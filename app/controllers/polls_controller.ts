@@ -45,7 +45,7 @@ export default class PollsController {
       .preload('options')
       .firstOrFail()
 
-    return serialize(poll)
+    return serialize(poll.serialize())
   }
 
   async close({ auth, params, serialize }: HttpContext) {
