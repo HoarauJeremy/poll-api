@@ -18,4 +18,14 @@ export interface ApiDefinition {
       destroy: typeof routes['profile.access_tokens.destroy']
     }
   }
+  polls: {
+    show: typeof routes['polls.show']
+    index: typeof routes['polls.index']
+    store: typeof routes['polls.store']
+    close: typeof routes['polls.close']
+  }
+  votes: {
+    store: typeof routes['votes.store']
+    results: typeof routes['votes.results']
+  }
 }

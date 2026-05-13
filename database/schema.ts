@@ -32,6 +32,38 @@ export class AuthAccessTokenSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class OptionSchema extends BaseModel {
+  static $columns = ['id', 'label', 'order', 'pollId'] as const
+  $columns = OptionSchema.$columns
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare label: string
+  @column()
+  declare order: number
+  @column()
+  declare pollId: number | null
+}
+
+export class PollSchema extends BaseModel {
+  static $columns = ['code', 'createdAt', 'id', 'status', 'title', 'updatedAt', 'userId'] as const
+  $columns = PollSchema.$columns
+  @column()
+  declare code: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare status: string
+  @column()
+  declare title: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number | null
+}
+
 export class UserSchema extends BaseModel {
   static $columns = ['createdAt', 'email', 'fullName', 'id', 'password', 'updatedAt'] as const
   $columns = UserSchema.$columns
@@ -47,4 +79,19 @@ export class UserSchema extends BaseModel {
   declare password: string
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
+}
+
+export class VoteSchema extends BaseModel {
+  static $columns = ['id', 'optionId', 'pollId', 'sessionId', 'votedAt'] as const
+  $columns = VoteSchema.$columns
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare optionId: number | null
+  @column()
+  declare pollId: number | null
+  @column()
+  declare sessionId: string
+  @column.dateTime()
+  declare votedAt: DateTime
 }
